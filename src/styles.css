@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  details summary {
+    list-style: none;
+  }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(226, 232, 240, 0.86);
+  }
+
+  .button-primary,
+  .button-secondary,
+  .button-danger,
+  .tab-button {
+    @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .button-primary {
+    @apply bg-slate-950 text-white hover:bg-indigo-900;
+  }
+
+  .button-secondary {
+    @apply border border-slate-300 bg-white text-slate-800 hover:bg-slate-100;
+  }
+
+  .button-danger {
+    @apply bg-red-700 text-white hover:bg-red-800;
+  }
+
+  .tab-button {
+    @apply border border-slate-200 bg-white text-slate-600 hover:bg-slate-50;
+  }
+
+  .tab-button-active {
+    @apply border-slate-950 bg-slate-950 text-white hover:bg-slate-900;
+  }
+
+  .form-label {
+    @apply mb-2 block text-sm font-bold text-slate-700;
+  }
+
+  .form-field {
+    @apply w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition-colors focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100;
+  }
+
+  .day-box {
+    @apply border-l-4 border-slate-200 bg-white py-4 pl-4 pr-3 transition-colors;
+  }
+
+  .day-box:hover {
+    @apply border-indigo-400 bg-slate-50;
+  }
+
+  .day-box-complete {
+    @apply border-emerald-500;
+  }
+
+  .task-row {
+    @apply flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors hover:border-slate-300 hover:bg-slate-50;
+  }
+
+  .task-check {
+    @apply mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 transition-colors;
+  }
+}
