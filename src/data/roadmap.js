@@ -1,4 +1,7 @@
-export const ROADMAP_ID = 'cloud-architect-pivot-12-week-v1';
+import { parsePlan } from './parsePlan';
+
+const modules = import.meta.glob('./plan.md', { query: '?raw', import: 'default', eager: true });
+const planMarkdown = modules['./plan.md'];
 
 export const strategyCards = [
   {
@@ -21,8 +24,8 @@ export const strategyCards = [
   },
 ];
 
-export const roadmap = {
-  id: ROADMAP_ID,
+const fallbackRoadmap = {
+  id: 'cloud-architect-pivot-12-week-v1',
   title: 'Cloud Architect Pivot',
   subtitle: 'The "Zero-to-Cloud" 12-Week Accelerated Sprint (Mid-40s Edition)',
   target: 'Job Ready in 84 Days',
@@ -769,6 +772,21 @@ export const roadmap = {
     },
   ],
 };
+
+let parsedRoadmap = null;
+if (planMarkdown && typeof planMarkdown === 'string' && planMarkdown.trim().length > 0) {
+  try {
+    const result = parsePlan(planMarkdown);
+    if (result && result.roadmap && result.roadmap.phases && result.roadmap.phases.length > 0) {
+      parsedRoadmap = result.roadmap;
+    }
+  } catch (e) {
+    console.error("Failed to parse plan.md, falling back to default roadmap", e);
+  }
+}
+
+export const roadmap = parsedRoadmap || fallbackRoadmap;
+export const ROADMAP_ID = roadmap.id;
 
 export function flattenDays(source = roadmap) {
   return source.phases.flatMap((phase) =>
