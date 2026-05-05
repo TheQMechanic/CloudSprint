@@ -139,8 +139,14 @@ export function parsePlan(markdownText) {
     if (line.startsWith('# ')) {
       const parts = line.replace('# ', '').split('|').map(s => s.trim());
       const phaseTitleFull = parts[0] || 'Phase';
-      const range = parts[1] || '';
-      const color = parts[2] || 'indigo';
+      let range = parts[1] || '';
+      let color = parts[2] || 'indigo';
+      
+      const knownColors = ['indigo', 'emerald', 'orange', 'red', 'violet', 'amber', 'gold'];
+      if (parts.length === 2 && knownColors.includes(parts[1].toLowerCase())) {
+        color = parts[1].toLowerCase();
+        range = '';
+      }
       
       const titleMatch = phaseTitleFull.match(/^(Phase\s+\d+):\s*(.*)/i);
       let label = 'Phase';
@@ -231,7 +237,26 @@ export function parsePlan(markdownText) {
       continue;
     }
     
-    if (line.startsWith('- ') && currentDay) {
+    if (line.startsWith('- ') && currentPhase) {
+       if (!currentWeek) {
+         currentWeek = {
+           id: currentPhase.id + '-week-1',
+           title: 'Schedule',
+           defaultOpen: true,
+           featured: false,
+           days: []
+         };
+         currentPhase.weeks.push(currentWeek);
+       }
+       if (!currentDay) {
+         currentDay = {
+           id: currentWeek.id + '-day-1',
+           title: 'Tasks',
+           tasks: []
+         };
+         currentWeek.days.push(currentDay);
+       }
+       
        const taskLine = line.replace('- ', '').trim();
        const { text: textWithoutLink, href } = extractLink(taskLine);
        
