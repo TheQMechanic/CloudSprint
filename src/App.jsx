@@ -21,6 +21,7 @@ import {
 import Dashboard from './Components/Dashboard';
 import PhaseSection from './Components/PhaseSection';
 import ProgressFooter from './Components/ProgressFooter';
+import logo from './assets/logo.png';
 
 function App() {
   const allTasks = useMemo(() => flattenTasks(roadmap), []);
@@ -331,24 +332,22 @@ function App() {
   // --- Render ---
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-28 text-slate-900">
-      <header className="bg-indigo-900 px-6 py-12 text-white shadow-xl">
+    <div className="min-h-screen bg-brand-bg pb-28 text-brand-secondary">
+      <header className="bg-brand-primary px-6 py-12 text-white shadow-xl">
         <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-bold uppercase text-indigo-200">
+            <p className="mb-3 text-sm font-bold uppercase text-brand-accent">
               {roadmap.commitment}
             </p>
-            <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">
-              {roadmap.title}
-            </h1>
-            <p className="mt-4 max-w-2xl text-lg font-medium text-indigo-100">
+            <img src={logo} alt="Cloud Architect Pivot Logo" className="mb-4 h-16 w-auto object-contain sm:h-20" />
+            <p className="mt-4 max-w-2xl text-lg font-medium text-brand-bg opacity-90">
               {roadmap.subtitle}
             </p>
           </div>
-          <div className="w-full max-w-sm border border-indigo-300/30 bg-indigo-950/40 p-5 md:w-80">
+          <div className="w-full max-w-sm border border-brand-accent/30 bg-brand-secondary/40 p-5 md:w-80 rounded-lg shadow-inner">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-xs font-bold uppercase text-indigo-200">
+                <p className="text-xs font-bold uppercase text-brand-accent">
                   Progress
                 </p>
                 <p className="mt-1 text-4xl font-black">
@@ -357,13 +356,13 @@ function App() {
               </div>
               <Gauge className="h-10 w-10 text-emerald-300" aria-hidden />
             </div>
-            <div className="mt-4 h-2 overflow-hidden rounded bg-indigo-950">
+            <div className="mt-4 h-2 overflow-hidden rounded bg-brand-secondary">
               <div
                 className="h-full bg-emerald-400 transition-all duration-500"
                 style={{ width: `${summary.percentage}%` }}
               />
             </div>
-            <p className="mt-3 text-sm text-indigo-100">
+            <p className="mt-3 text-sm text-brand-bg opacity-90">
               {summary.completedTaskCount} of {summary.totalTaskCount} tasks
               checked
             </p>

@@ -60,10 +60,40 @@ export const colorClasses = {
     link: 'text-red-700 hover:text-red-900',
     check: 'border-red-500 bg-red-600',
   },
+  violet: {
+    header: 'bg-violet-950',
+    accentText: 'text-violet-300',
+    border: 'border-violet-500',
+    pale: 'bg-violet-50',
+    text: 'text-violet-900',
+    link: 'text-violet-700 hover:text-violet-900',
+    check: 'border-violet-500 bg-violet-600',
+  },
+  amber: {
+    header: 'bg-amber-950',
+    accentText: 'text-amber-300',
+    border: 'border-amber-500',
+    pale: 'bg-amber-50',
+    text: 'text-amber-900',
+    link: 'text-amber-700 hover:text-amber-900',
+    check: 'border-amber-500 bg-amber-600',
+  },
+  gold: {
+    header: 'bg-yellow-950',
+    accentText: 'text-yellow-300',
+    border: 'border-yellow-500',
+    pale: 'bg-yellow-50',
+    text: 'text-yellow-900',
+    link: 'text-yellow-700 hover:text-yellow-900',
+    check: 'border-yellow-500 bg-yellow-600',
+  },
 };
 
 export const strategyColorClasses = {
   indigo: 'border-indigo-500 text-indigo-700',
   emerald: 'border-emerald-500 text-emerald-700',
   orange: 'border-orange-500 text-orange-700',
+  violet: 'border-violet-500 text-violet-700',
+  amber: 'border-amber-500 text-amber-700',
+  gold: 'border-yellow-500 text-yellow-700',
 };
